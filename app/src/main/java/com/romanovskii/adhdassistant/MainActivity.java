@@ -7,13 +7,16 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     Button alarmBtn;
+    TextView versionText;
 
     public static final int ALARM_INTERVAL = 30 * 60 * 1000;
 
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         alarmBtn = findViewById(R.id.alarmBtn);
+        versionText = findViewById(R.id.versionText);
 
         alarmBtn.setOnClickListener(view -> {
             SharedPreferences prefs = getApplication().getApplicationContext().getSharedPreferences("AlarmPrefs", Context.MODE_PRIVATE);
@@ -37,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         updateButtonText();
+
+        try {
+            String versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            versionText.setText(versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     void updateButtonText() {
