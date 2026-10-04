@@ -11,8 +11,8 @@ android {
         minSdk 30
         //noinspection EditedTargetSdkVersion
         targetSdk 36
-        versionCode 10000004
-        versionName "v1.0.4"
+        versionCode 10000005
+        versionName "v1.0.5"
         archivesBaseName = "adhdassistant-" + versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
