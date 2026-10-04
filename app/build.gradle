@@ -10,8 +10,9 @@ android {
         applicationId "com.romanovskii.adhdassistant"
         minSdk 30
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode 10000002
+        versionName "v1.0.2"
+        archivesBaseName = "adhdassistant-" + versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
