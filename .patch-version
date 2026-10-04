@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+REPLACE_FROM="versionName \".*\""
+REPLACE_TO="versionName \"$1\""
+sed -i "s/$REPLACE_FROM/$REPLACE_TO/g" app/build.gradle
+
+TAG_CURR_MAJOR=1
+TAG_CURR_MINOR=0
+TAG_CURR_PATCH=0
+TAG_REGEXP="^v?([0-9]+.*)\.([0-9]+.*)\.([0-9]+.*)$"
+if [[ "$1" =~ $TAG_REGEXP ]]; then
+  TAG_CURR_MAJOR=${BASH_REMATCH[1]}
+  TAG_CURR_MINOR=${BASH_REMATCH[2]}
+  TAG_CURR_PATCH=${BASH_REMATCH[3]}
+else
+  exit 1
+fi
+
+VERSION_CODE="0"
+printf -v VERSION_CODE "%d%03d%04d" $TAG_CURR_MAJOR $TAG_CURR_MINOR $TAG_CURR_PATCH
+REPLACE_FROM="versionCode .*"
+REPLACE_TO="versionCode $VERSION_CODE"
+sed -i "s/$REPLACE_FROM/$REPLACE_TO/g" app/build.gradle
