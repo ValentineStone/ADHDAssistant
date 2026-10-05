@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Button alarmBtn;
     TextView versionText;
 
-    public static final int ALARM_INTERVAL = 30 * 60 * 1000;
+    public static final int ALARM_INTERVAL = 30 * 60 * 1000; // ms
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -33,7 +33,7 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ADHD assistive technology app, aka cognitive prosthetic. Makes alarm go off every 30 minutes to help you get out of hyperfocus or from being distracted."
+            android:text="ADHD assistive technology app, aka cognitive prosthetic. Makes alarm go off every 30 minutes to help you get out of hyperfocus or distract you from being distracted."
             android:textAlignment="center" />
 
         <TextView
