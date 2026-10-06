@@ -40,12 +40,9 @@ public class BootReceiver extends BroadcastReceiver {
                         PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
                 );
 
-                // Set first post-boot alarm to fire 30 minutes from now
-                long triggerTimeInMs = System.currentTimeMillis() + MainActivity.ALARM_INTERVAL;
-
                 alarmManager.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
-                        triggerTimeInMs,
+                        MainActivity.nextTimestamp(),
                         pendingIntent
                 );
             }

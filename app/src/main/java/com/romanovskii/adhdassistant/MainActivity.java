@@ -18,7 +18,11 @@ public class MainActivity extends AppCompatActivity {
     Button alarmBtn;
     TextView versionText;
 
-    public static final int ALARM_INTERVAL = 30 * 60 * 1000; // ms
+    public static final long ALARM_INTERVAL = 30 * 60 * 1000; // ms
+
+    public static long nextTimestamp() {
+        return (System.currentTimeMillis() / ALARM_INTERVAL + 1) * ALARM_INTERVAL;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,9 +96,6 @@ public class MainActivity extends AppCompatActivity {
                     PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
             );
 
-            // 4. Set the trigger time (e.g., 10 seconds from now)
-            long triggerTimeInMs = System.currentTimeMillis() + ALARM_INTERVAL;
-
             // SAVE THE STATE AS TRUE
             getSharedPreferences("AlarmPrefs", Context.MODE_PRIVATE)
                     .edit()
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 // 5. Schedule the exact alarm that triggers even in Doze mode
                 alarmManager.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
-                        triggerTimeInMs,
+                        MainActivity.nextTimestamp(),
                         pendingIntent
                 );
                 Toast.makeText(this, "Will alarm every 30 minutes", Toast.LENGTH_SHORT).show();

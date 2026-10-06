@@ -35,12 +35,10 @@ public class AlarmReceiver extends BroadcastReceiver {
                     PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
             );
 
-            long nextTriggerTime = System.currentTimeMillis() + MainActivity.ALARM_INTERVAL;
-
             // Schedule the next link in the chain
             alarmManager.setExactAndAllowWhileIdle(
                     AlarmManager.RTC_WAKEUP,
-                    nextTriggerTime,
+                    MainActivity.nextTimestamp(),
                     nextPendingIntent
             );
         }
